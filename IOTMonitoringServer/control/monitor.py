@@ -8,7 +8,9 @@ import schedule
 import time
 from django.conf import settings
 
-client = mqtt.Client(settings.MQTT_USER_PUB)
+# client = mqtt.Client(settings.MQTT_USER_PUB)
+client = mqtt.Client(client_id=settings.MQTT_USER_PUB, protocol=mqtt.MQTTv311)  # Puedes ajustar el protocolo según el que estés usando
+
 
 
 def analyze_data():

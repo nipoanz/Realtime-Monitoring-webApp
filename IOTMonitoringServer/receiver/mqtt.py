@@ -30,7 +30,13 @@ def on_message(client: mqtt.Client, userdata, message: mqtt.MQTTMessage):
         match = re.search(r'\{.*\}', payload)
         if match:
             payload = match.group(0)
+            
         print("payload: " + payload)
+        
+        # ovbtener solo el json del payload
+        jsondata = payload.split("{")[1].split("}")[0]
+        print("jsondata: " + jsondata)
+        
         payloadJson = json.loads(payload)
         country, state, city, user = utils.get_topic_data(
             message.topic)

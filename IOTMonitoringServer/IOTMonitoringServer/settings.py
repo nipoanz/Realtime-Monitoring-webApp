@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'control',
     'receiver',
-    'viewer'
+    'viewer',
+    'django-bootstrap4'
 ]
 
 MIDDLEWARE = [

@@ -36,23 +36,28 @@ def on_message(client: mqtt.Client, userdata, message: mqtt.MQTTMessage):
         payloadJson = json.loads(payload)
         country, state, city, user = utils.get_topic_data(
             message.topic)
-
+        
+        print(f"Obteniendo usuario: {user}")
         user_obj = utils.get_user(user)
-        print("user_obj: " + str(user_obj))
+
+        print(f"Obteniendo ubicación: {city}, {state}, {country}")
         location_obj = utils.get_or_create_location(city, state, country)
+
+        
+
 
         for measure in payloadJson:
             variable = measure
-            unit = utils.get_units(str(variable).lower())
             print("variable: " + variable)
+            unit = utils.get_units(str(variable).lower())
             print("unit: " + unit)
+            
+            print(f"Obteniendo variable: {variable}, {unit}")
             variable_obj = utils.get_or_create_measurement(variable, unit)
-            print("variable_obj: " + str(variable_obj))
-            #ver los valores del diccionario
-            print(location_obj.to_dict())
+
+            print(f"Obteniendo estación para usuario {user_obj} y ubicación {location_obj}")
             sensor_obj = utils.get_or_create_station(user_obj, location_obj)
-            print("sensor_obj: " + str(sensor_obj))
-            print(sensor_obj)
+            
             utils.create_data(
                 float(payloadJson[measure]), sensor_obj, variable_obj, time)
 

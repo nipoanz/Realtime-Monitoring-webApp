@@ -26,6 +26,9 @@ def on_message(client: mqtt.Client, userdata, message: mqtt.MQTTMessage):
     try:
         time = datetime.now()
         payload = message.payload.decode("utf-8")
+        match = re.search(r'\{.*\}', payload)
+        if match:
+            payload = match.group(0)
         print("payload: " + payload)
         payloadJson = json.loads(payload)
         country, state, city, user = utils.get_topic_data(

@@ -33,15 +33,12 @@ def on_message(client: mqtt.Client, userdata, message: mqtt.MQTTMessage):
             
         print("payload: " + payload)
         
-        # ovbtener solo el json del payload
-        jsondata = payload.split("{")[1].split("}")[0]
-        print("jsondata: " + jsondata)
-        
         payloadJson = json.loads(payload)
         country, state, city, user = utils.get_topic_data(
             message.topic)
 
         user_obj = utils.get_user(user)
+        print("user_obj: " + str(user_obj))
         location_obj = utils.get_or_create_location(city, state, country)
 
         for measure in payloadJson:

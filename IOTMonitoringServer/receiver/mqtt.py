@@ -48,7 +48,8 @@ def on_message(client: mqtt.Client, userdata, message: mqtt.MQTTMessage):
             print("unit: " + unit)
             variable_obj = utils.get_or_create_measurement(variable, unit)
             print("variable_obj: " + str(variable_obj))
-            print(location_obj)
+            #ver los valores del diccionario
+            print(location_obj.to_dict())
             sensor_obj = utils.get_or_create_station(user_obj, location_obj)
             print("sensor_obj: " + str(sensor_obj))
             print(sensor_obj)

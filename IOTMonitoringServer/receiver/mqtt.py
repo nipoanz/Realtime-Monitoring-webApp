@@ -64,7 +64,8 @@ def on_disconnect(client: mqtt.Client, userdata, rc):
 
 print("Iniciando cliente MQTT...", settings.MQTT_HOST, settings.MQTT_PORT)
 try:
-    client = mqtt.Client(settings.MQTT_USER)
+    # Forzar el uso de MQTT 3.1.1 o cambiar a MQTTv5 si es necesario
+    client = mqtt.Client(settings.MQTT_USER, protocol=mqtt.MQTTv311)  
     client.on_connect = on_connect
     client.on_message = on_message
     client.on_disconnect = on_disconnect

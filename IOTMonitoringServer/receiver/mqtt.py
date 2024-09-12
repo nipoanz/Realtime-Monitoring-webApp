@@ -5,6 +5,7 @@ import os
 import ssl
 import paho.mqtt.client as mqtt
 from django.conf import settings
+import re
 
 
 def on_message(client: mqtt.Client, userdata, message: mqtt.MQTTMessage):

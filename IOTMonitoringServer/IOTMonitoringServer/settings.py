@@ -35,7 +35,6 @@ ALLOWED_HOSTS = ["localhost", "54.173.89.59"]
 INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap4',
-    'bootstrap4',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

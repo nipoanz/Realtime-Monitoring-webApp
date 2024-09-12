@@ -48,7 +48,7 @@ def on_message(client: mqtt.Client, userdata, message: mqtt.MQTTMessage):
 
 def on_connect(client, userdata, flags, rc):
     print("Suscribiendo al tópico: " + settings.TOPIC)
-    client.subscribe(settings.TOPIC)
+    client.subscribe("#")
     print("Servicio de recepcion de datos iniciado")
 
 

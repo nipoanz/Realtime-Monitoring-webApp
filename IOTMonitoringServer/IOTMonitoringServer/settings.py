@@ -163,7 +163,7 @@ MQTT_HOST = "34.224.27.182"
 MQTT_PORT = 8082
 
 # Credenciales para el usuario suscriptor del bróker MQTT
-MQTT_USER = "peperez"
+MQTT_USER = "admin"
 MQTT_PASSWORD = "Uniandinos2024"
 
 # Credenciales para el usuario publicador del bróker MQTT

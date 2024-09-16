@@ -62,16 +62,21 @@ def analyze_data():
     print(len(aggregation), "dispositivos revisados")
     print(alerts, "alertas enviadas")
     
+def get_measurements():
+    measurements = Measurement.objects.all()
+    return list(measurements)
+
 
 def analyze_temp_average():
     '''
     Analiza el promedio de la temperatura y envía alertas si está fuera de los límites.
     '''
     print("Calculando alertas de temperatura...")
-
+    measurements = get_measurements()
+    print("Mediciones: ", measurements)
     # Consulta solo para la variable 'temperatura' y últimos 2 minutos
     data = Data.objects.filter(
-        base_time__gte=datetime.now() - timedelta(minutes=10),
+        base_time__gte=datetime.now() - timedelta(hours=10),
         measurement__name="temperatura"  # Filtra solo la temperatura
     )
     print(data)

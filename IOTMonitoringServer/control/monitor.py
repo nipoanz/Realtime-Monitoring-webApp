@@ -188,8 +188,6 @@ def start_cron():
     print("Iniciando Cron de alerta promedio de temperatura...")
     schedule.every(1).minutes.do(analyze_temp_average)
     print("Servicio de control iniciado")
-    while 1:
-        if not client.is_connected():
-            setup_mqtt()
+    while 1:            
         schedule.run_pending()
         time.sleep(1)

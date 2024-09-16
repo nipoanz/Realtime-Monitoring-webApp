@@ -71,9 +71,10 @@ def analyze_temp_average():
 
     # Consulta solo para la variable 'temperatura' y últimos 2 minutos
     data = Data.objects.filter(
-        base_time__gte=datetime.now() - timedelta(minutes=2),
+        base_time__gte=datetime.now() - timedelta(minutes=10),
         measurement__name="temperatura"  # Filtra solo la temperatura
     )
+    print(data)
 
     # Agrupa y promedia los datos
     aggregation = data.annotate(check_value=Avg('avg_value')) \

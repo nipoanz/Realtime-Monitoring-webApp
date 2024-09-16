@@ -12,7 +12,6 @@ client = mqtt.Client(settings.MQTT_USER_PUB)
 # client = mqtt.Client(client_id=settings.MQTT_USER_PUB, protocol=mqtt.MQTTv311)  # Puedes ajustar el protocolo según el que estés usando
 
 
-
 def analyze_data():
     # Consulta todos los datos de la última hora, los agrupa por estación y variable
     # Compara el promedio con los valores límite que están en la base de datos para esa variable.
@@ -117,9 +116,9 @@ def analyze_temp_average():
 
         # Evaluar la medición en relación con los límites
         if check_value > max_value:
-            led_state = "slow_blink" 
+            led_state = "fast_blink" 
         elif check_value < min_value:
-            led_state = "fast_blink"
+            led_state = "slow_blink"
         else:
             led_state = "off"
             
@@ -130,7 +129,7 @@ def analyze_temp_average():
         print(datetime.now(), "Sending alert to {} {}".format(topic, variable))
         print("Mensaje: ", message)
         
-        client.publish(topic, message)
+        client.publish(String(topic), String(message))
 
         alerts += 1
 
@@ -190,5 +189,7 @@ def start_cron():
     schedule.every(1).minutes.do(analyze_temp_average)
     print("Servicio de control iniciado")
     while 1:
+        if not client.is_connected():
+            setup_mqtt()
         schedule.run_pending()
         time.sleep(1)

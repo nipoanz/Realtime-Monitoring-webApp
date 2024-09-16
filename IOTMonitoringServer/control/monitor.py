@@ -129,7 +129,7 @@ def analyze_temp_average():
         print(datetime.now(), "Sending alert to {} {}".format(topic, variable))
         print("Mensaje: ", message)
         
-        client.publish(String(topic), String(message))
+        client.publish(topic, message)
 
         alerts += 1
 

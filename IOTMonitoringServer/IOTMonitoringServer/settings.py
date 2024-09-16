@@ -163,11 +163,11 @@ MQTT_HOST = "34.224.27.182"
 MQTT_PORT = 8082
 
 # Credenciales para el usuario suscriptor del bróker MQTT
-MQTT_USER = "peperez"
+MQTT_USER = "admin"
 MQTT_PASSWORD = "Uniandinos2024"
 
 # Credenciales para el usuario publicador del bróker MQTT
-MQTT_USER_PUB = "peperez"
+MQTT_USER_PUB = "admin"
 MQTT_PASSWORD_PUB = "Uniandinos2024"
 
 # Tópico a suscribir. "+/+/+/+/out" se suscribe únicamente a los

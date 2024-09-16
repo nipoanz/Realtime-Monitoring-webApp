@@ -73,9 +73,9 @@ def analyze_temp_average():
     print("Calculando alertas de temperatura...")
     measurements = get_measurements()
     print("Mediciones: ", measurements)
-    # Consulta solo para la variable 'temperatura' y últimos 2 minutos
+    # Consulta solo para la variable 'temperatura' y últimos 5 minutos
     data = Data.objects.filter(
-        base_time__gte=datetime.now() - timedelta(minutes=60),
+        base_time__gte=datetime.now() - timedelta(minutes=5),
         measurement__name="temperatura"  # Filtra solo la temperatura
     )
     # setup_mqtt()

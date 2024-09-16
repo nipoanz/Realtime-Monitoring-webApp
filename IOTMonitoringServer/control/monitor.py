@@ -189,6 +189,5 @@ def start_cron():
     schedule.every(1).minutes.do(analyze_temp_average)
     print("Servicio de control iniciado")
     while 1:            
-        # schedule.run_pending()
-        analyze_temp_average()
+        schedule.run_pending()
         time.sleep(5)

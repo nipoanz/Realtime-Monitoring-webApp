@@ -79,7 +79,7 @@ def analyze_temp_average():
         base_time__gte=datetime.now() - timedelta(minutes=15),
         measurement__name="temperatura"  # Filtra solo la temperatura
     )
-    setup_mqtt()
+    # setup_mqtt()
     # print(data)
 
     # Agrupa y promedia los datos

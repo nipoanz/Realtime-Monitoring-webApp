@@ -76,10 +76,11 @@ def analyze_temp_average():
     print("Mediciones: ", measurements)
     # Consulta solo para la variable 'temperatura' y últimos 2 minutos
     data = Data.objects.filter(
-        base_time__gte=datetime.now() - timedelta(hours=10),
+        base_time__gte=datetime.now() - timedelta(minutes=15),
         measurement__name="temperatura"  # Filtra solo la temperatura
     )
-    print(data)
+    setup_mqtt()
+    # print(data)
 
     # Agrupa y promedia los datos
     aggregation = data.annotate(check_value=Avg('avg_value')) \
@@ -128,7 +129,7 @@ def analyze_temp_average():
         topic = '{}/{}/{}/{}/in'.format(country, state, city, user)
         print(datetime.now(), "Sending alert to {} {}".format(topic, variable))
         print("Mensaje: ", message)
-        setup_mqtt()
+        
         client.publish(topic, message)
 
         alerts += 1
